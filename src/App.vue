@@ -1,14 +1,11 @@
 <template>
-  <F />
+  <router-view/>
+  <router-link to="/xxx">xxx</router-link>
 </template>
 
 <script>
-import F from './components/Frank.vue'
-
 export default {
   name: 'App',
-  components: {
-    F
-  }
+
 }
 </script>
