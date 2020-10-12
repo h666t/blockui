@@ -2,10 +2,10 @@
   <div>
     <Topnav/>
     <div class="banner">
-      <h1>轱辘UI</h1>
+      <h1>Block UI</h1>
       <h2>一个厉害的 UI 框架</h2>
       <p class="actions">
-        <a href="">GItHub</a>
+        <a href="https://github.com">GItHub</a>
         <router-link to="/doc">开始</router-link>
       </p>
     </div>
@@ -28,7 +28,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: lightgreen;
+  background: white;
   > .actions{
     padding: 8px 0;
     a {
