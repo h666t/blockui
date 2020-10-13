@@ -1,5 +1,5 @@
 <template>
-  <button class="gulu-button" :class="{[`theme-${theme}`]: theme}">
+  <button class="block-button" :class="{[`block-theme-${theme}`]: theme}">
     <slot/>
   </button>
 </template>
@@ -21,7 +21,7 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
-.gulu-button {
+.block-button {
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;

@@ -1,5 +1,5 @@
 <template>
-  <button :class="{checked:value}" @click="toggle">
+  <button class="block-switch" :class="{'block-checked':value}" @click="toggle">
     <span/>
   </button>
 </template>
@@ -19,7 +19,7 @@ export default {
 <style lang="scss">
   $h: 22px;
   $h2: $h - 4px;
-  button{
+  .block-switch{
     height: $h;
     width: $h*2;
     border: none;
@@ -27,30 +27,30 @@ export default {
     border-radius: $h/2;
     position: relative;
     transition: all 250ms ease;
-  }
-  span{
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: $h2;
-    width: $h2;
-    background:white;
-    border-radius: $h2 / 2;
-    transition: all 250ms ease;
-  }
-  button.checked{
-    background: #1890ff;
-  }
-  button.checked > span{
-    left: calc(100% - #{$h2} - 2px);
-  }
-  button:focus{
-    outline: none;
-  }
-  button:active{
-    > span {width: $h2 + 4px;}
-  }
-  button.checked:active{
-    > span {width: $h2 + 4px; margin-left: -4px;}
+    >span{
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      height: $h2;
+      width: $h2;
+      background:white;
+      border-radius: $h2 / 2;
+      transition: all 250ms ease;
+    }
+    &.block-checked{
+      background: #1890ff;
+      &:active{
+        > span {width: $h2 + 4px; margin-left: -4px;}
+      }
+      > span{
+        left: calc(100% - #{$h2} - 2px);
+      }
+    }
+    &:focus{
+      outline: none;
+    }
+    &:active{
+      > span {width: $h2 + 4px;}
+    }
   }
 </style>
