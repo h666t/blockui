@@ -23,6 +23,7 @@
         <router-view/>
       </main>
     </div>
+    <Parent/>
   </div>
 </template>
 
