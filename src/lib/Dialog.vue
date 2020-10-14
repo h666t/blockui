@@ -4,13 +4,13 @@
     <div class="block-dialog-wrapper">
       <div class="block-dialog">
         <header>
-          {{title}}
+          <slot name="title"/>
           <span class="block-dialog-close"
                 @click="close"
           />
         </header>
         <main>
-          <slot/>
+          <slot name="content"/>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>
@@ -36,10 +36,6 @@ export default {
     confirmFn: {
       type: Function,
       required: true
-    },
-    title:{
-      type: String,
-      default: '提示'
     }
   },
   components: {Button},
