@@ -1,7 +1,9 @@
 <template>
+  <h1>示例1</h1>
   <div>
     <Dialog v-model:visible="visible"
-            :closeOnClickOverlay="closeOnClickOverlay" :confirmFn="confirmFn">
+            :closeOnClickOverlay="closeOnClickOverlay"
+            :confirmFn="confirmFn">
       <template v-slot:title>
         <strong>Title</strong>
       </template>
@@ -12,12 +14,15 @@
     </Dialog>
     <Button @click="toggle">toggle</Button>
   </div>
+  <h1>示例2</h1>
+  <Button @click="showDialog">showDialog</Button>
 </template>
 
 <script lang="ts">
 import Dialog from '../../lib/Dialog.vue';
 import {ref} from 'vue'
 import Button from '../../lib/Button.vue';
+import {openDialog} from '../../lib/openDialog';
 export default {
   components:{
     Button,
@@ -32,7 +37,15 @@ export default {
     const confirmFn = () => {
       return true
     }
-    return {visible,toggle,closeOnClickOverlay,confirmFn}
-  }
+    const showDialog = () => {
+        openDialog({
+          visible:true,
+          title:'示例2',
+          content:'123',
+          closeOnClickOverlay:true,
+          confirmFn:()=>{return true}})
+    }
+    return {visible,toggle,closeOnClickOverlay,confirmFn,showDialog}
+  },
 }
 </script>
