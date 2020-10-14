@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Dialog :visible="visible"/>
+    <Dialog v-model:visible="visible" :closeOnClickOverlay="closeOnClickOverlay" :confirmFn="confirmFn"/>
     <Button @click="toggle">toggle</Button>
   </div>
 </template>
@@ -15,11 +15,15 @@ import Button from '../../lib/Button.vue';
       Dialog
     },
     setup(){
-      const visible = ref(false)
-      const toggle = () => {
+      const visible = ref(false) // 对话框是否可见
+      const closeOnClickOverlay = ref(true) // 点击对话框外时，对话框是否会关闭
+      const toggle = () => { //控制对话框是否可见
         visible.value = !visible.value
       }
-      return {visible,toggle}
+      const confirmFn = () => {
+        return true
+      }
+      return {visible,toggle,closeOnClickOverlay,confirmFn}
     }
   }
 </script>
