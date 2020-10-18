@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <Tabs v-model:selected="selected">
-      <Tab title="导航1">内容1</Tab>
-      <Tab title="导航2">内容2</Tab>
-    </Tabs>
-  </div>
+  <DocDemo title="Tabs 标签页" titleDetail="选项卡切换组件。" use-detail="提供平级的区域将大块内容进行收纳和展现，保持界面整洁。">
+<Demo :component="TabsDemoNormal"/>
+    <Demo :component="TabsDemoDisabled"/>
+  </DocDemo>
+
+
+
 </template>
 
 <script lang="ts">
-import Tabs from '../../lib/Tabs.vue';
-import Tab from '../../lib/Tab.vue';
-import {ref} from 'vue'
+
+import DocDemo from './DocDemo.vue';
+import Demo from '../Demo.vue';
+import TabsDemoNormal from './demo/tabs/TabsDemoNormal.vue';
+import TabsDemoDisabled from './demo/tabs/TabsDemoDisabled.vue';
   export default {
-    components: {Tabs, Tab},
+    components: {Demo,DocDemo},
     setup(){
-      const selected = ref('导航2')
-      return {selected}
+      return {TabsDemoNormal,TabsDemoDisabled}
     }
   }
 </script>

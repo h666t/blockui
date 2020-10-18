@@ -5,7 +5,10 @@
          v-for="(t,index) in titles" :key="index"
          :class="t === selected ? 'selected' : ''"
          @click="()=>{select(t)}"
-         :ref="(el)=>{if (t === selected){selectedItem = el}}"
+         :ref="(el)=>{
+           if (t === selected){selectedItem = el}
+         }"
+         :style="disabled.indexOf(t) >=0 ? 'cursor: not-allowed' : 'cursor:pointer' "
     >
       {{ t }}
     </div>
@@ -14,21 +17,26 @@
   <div class="block-tabs-content">
     <component :is="current" :key="selected" class="block-tabs-content-item"/>
   </div>
+
 </div>
 </template>
 
 <script lang="ts">
-import Tab from './Tab.vue';
-import {computed, ref, watchEffect, onUpdated, onMounted} from 'vue';
+import {computed, ref, watchEffect, onMounted} from 'vue';
 
 export default {
   props: {
     selected: String,
+    disabled: {
+      type: Array,
+      default: []
+    }
   },
   setup(props, context) {
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
-      if (tag.type !== Tab) {
+      if (tag.type !== 'div') {
+        console.log(tag.type);
         throw new Error('Tabs 的内部必须是 Tab');
       }
     });
@@ -36,8 +44,10 @@ export default {
       return item.props.title;
     });
     const select = (title: string) => {
-      context.emit('update:selected', title);
-      return defaults.filter(item => item.props.title === title)[0];
+      if (props.disabled.indexOf(title) < 0){
+        context.emit('update:selected', title);
+        return defaults.filter(item => item.props.title === title)[0];
+      }
     };
     const current = computed(() => {
       return select(props.selected);

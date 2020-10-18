@@ -5,7 +5,7 @@
       <div class="demo">
         <component :is="component"/>
       </div>
-      <Button level="main" size="normal" @click="toggle">展示代码</Button>
+      <Button level="main" size="normal" @click="toggle">{{buttonText}}</Button>
         <pre v-if="codeVisible" class="language-html" v-html="code"/>
     </div>
   </div>
@@ -35,7 +35,10 @@ export default {
     const code = computed(()=>{
       return  Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html')
     })
-    return {Prism,codeVisible,toggle,code}
+    const buttonText = computed(()=>{
+      if (codeVisible.value){return '隐藏代码'}else {return '显示代码'}
+    })
+    return {Prism,codeVisible,toggle,code,buttonText}
   }
 }
 </script>
@@ -44,7 +47,7 @@ export default {
 .demo-box{
   display: grid;
   border:1px solid rgba(0,0,0,0.25);
-  margin-top: 8px;
+  margin-top: 20px;
   >h4{
     padding: 4px;
     font-weight: bold;
@@ -54,6 +57,8 @@ export default {
     border-top: 1px solid rgba(0,0,0,0.25);
     overflow: auto;
     padding: 4px;
+    display: flex;
+    flex-direction: column;
     >.demo{
       padding:  8px;
     }

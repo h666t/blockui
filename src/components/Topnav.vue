@@ -44,7 +44,6 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1200px;
   z-index: 10;
   justify-content: center;
   align-items: center;

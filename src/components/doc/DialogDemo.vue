@@ -1,51 +1,28 @@
 <template>
-  <h1>示例1</h1>
-  <div>
-    <Dialog v-model:visible="visible"
-            :closeOnClickOverlay="closeOnClickOverlay"
-            :confirmFn="confirmFn">
-      <template v-slot:title>
-        <strong>Title</strong>
-      </template>
-      <template v-slot:content>
-        <div>第一行</div>
-        <div>第二行</div>
-      </template>
-    </Dialog>
-    <Button @click="toggle">toggle</Button>
-  </div>
-  <h1>示例2</h1>
-  <Button @click="showDialog">showDialog</Button>
+  <DocDemo title="Dialog 对话框" title-detail="模态对话框。" use-detail="需要用户处理事务，又不希望跳转页面以致打断工作流程时，可以使用 Dialog 在当前页面正中打开一个浮层，承载相应的操作。">
+<Demo :component="DialogDemoSlot" />
+    <Demo :component="DialogDemoFn"/>
+  </DocDemo>
 </template>
 
 <script lang="ts">
 import Dialog from '../../lib/Dialog.vue';
-import {ref} from 'vue'
 import Button from '../../lib/Button.vue';
-import {openDialog} from '../../lib/openDialog';
+
+import DocDemo from './DocDemo.vue';
+import Demo from '../Demo.vue';
+import DialogDemoSlot from './demo/dialog/DialogDemoSlot.vue';
+import DialogDemoFn from './demo/dialog/DialogDemoFn.vue';
 export default {
   components:{
+    Demo,
+    DocDemo,
     Button,
     Dialog
   },
   setup(){
-    const visible = ref(false) // 对话框是否可见
-    const closeOnClickOverlay = ref(true) // 点击对话框外时，对话框是否会关闭
-    const toggle = () => { //控制对话框是否可见
-      visible.value = !visible.value
-    }
-    const confirmFn = () => {
-      return true
-    }
-    const showDialog = () => {
-        openDialog({
-          visible:true,
-          title:'示例2',
-          content:'123',
-          closeOnClickOverlay:true,
-          confirmFn:()=>{return true}})
-    }
-    return {visible,toggle,closeOnClickOverlay,confirmFn,showDialog}
+
+    return {DialogDemoSlot,DialogDemoFn}
   },
 }
 </script>

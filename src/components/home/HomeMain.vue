@@ -38,7 +38,10 @@ export default {
 <style scoped lang="scss">
 main{
     display: grid;
-  @media (min-width: 900px) {
+  overflow: hidden;
+  justify-items: center;
+  margin-top: 20px;
+  @media (min-width: 500px) {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr ;
   }
@@ -51,10 +54,11 @@ main{
     grid-template-columns: 1fr 1fr 1fr ;
   }
   align-items: center;
-  justify-items: center;
   text-align: center;
   >div{
     margin-top: 20px;
+    display: grid;
+    justify-items: center;
     >article{
       >h3{
         font-weight: bold;
@@ -62,7 +66,7 @@ main{
         margin-bottom: 10px;
       }
     }
-    @media (max-width: 500px) {
+    @media (max-width: 1200px){
       &:nth-child(3){
         padding-bottom: 30px;
       }

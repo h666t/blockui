@@ -44,14 +44,15 @@ export default {
 
   > header {
     display: grid;
+    width: 100%;
     @media(min-width: 500px) {
       margin: auto;
       min-width: 100%;
       display: grid;
       align-items: center;
+      justify-items: center;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
-      justify-items: center;
       >.sloganAndButtons{
         >.slogan{
           font-size: 32px;
