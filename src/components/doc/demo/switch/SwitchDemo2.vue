@@ -1,12 +1,12 @@
 <demo>
-基本用法
+支持disable
 </demo>
 <template>
-  <Switch v-model:value="checked" />
+  <Switch v-model:value="checked" disabled />
 </template>
 
 <script lang="ts">
-import Switch from '../../lib/Switch.vue'
+import Switch from '../../../../lib/Switch.vue'
 import {ref} from 'vue'
 export default {
   components:{

@@ -1,17 +1,29 @@
 <template>
-  <button class="block-switch" :class="{'block-checked':value}" @click="toggle">
+  <button ref="switchRef" :disabled="disabled" class="block-switch" :class="{'block-checked':value}" @click="toggle">
     <span/>
   </button>
 </template>
 
 <script lang="ts">
+import {ref,onMounted} from 'vue'
 export default {
-    props:{ value: Boolean },
+    props:{ value: Boolean,
+      disabled:{
+        type:Boolean,
+        default:false
+      }},
     setup(props,context){
+      const switchRef = ref(null)
       const toggle = () => {
        context.emit('update:value',!props.value)
       }
-      return {toggle}
+      onMounted(()=>{
+        if (props.disabled){
+          switchRef.value.style.cursor = 'not-allowed'
+        }
+      })
+
+      return {toggle,switchRef}
     }
 }
 </script>

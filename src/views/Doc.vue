@@ -74,6 +74,7 @@ export default {
   display: flex;
   position: relative;
   > aside {
+    position: fixed;
     flex-shrink: 0;
     z-index: 1;
     background: white;
