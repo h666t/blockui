@@ -38,13 +38,17 @@ export default {
 <style scoped lang="scss">
 main{
     display: grid;
-  @media (max-width: 900px) and (min-width: 600px){
+  @media (min-width: 900px) {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr ;
   }
   @media (max-width: 500px) {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr ;
+  }
+  @media (min-width: 1200px) {
+    grid-template-rows: 1fr ;
+    grid-template-columns: 1fr 1fr 1fr ;
   }
   align-items: center;
   justify-items: center;
