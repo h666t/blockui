@@ -1,27 +1,34 @@
 <template>
   <div>
     <div class="topnav">
-      <router-link to="/" class="logo" >Block</router-link>
+      <router-link to="/" class="logo">
+        Block UI
+      </router-link>
       <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
       </ul>
-      <span class="toggleAside" @click="toggleMenu"></span>
+      <span v-if="toggleVisible" class="toggleAside" @click="toggleMenu"></span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { inject , Ref } from 'vue'
+import {inject, Ref} from 'vue';
+import Heart from './Logo.vue';
 export default {
-  setup(){
-    const menuVisible = inject<Ref<Boolean>>('menuVisible')
+  components: {Heart},
+  props: {
+    toggleVisible: Boolean
+  },
+  setup() {
+    const menuVisible = inject<Ref<Boolean>>('menuVisible');
     const toggleMenu = () => {
-        if (menuVisible){
-          menuVisible.value = !menuVisible.value
-        }
-    }
-    return {toggleMenu}
+      if (menuVisible) {
+        menuVisible.value = !menuVisible.value;
+      }
+    };
+    return {toggleMenu};
   }
 }
 </script>
@@ -29,13 +36,15 @@ export default {
 <style lang="scss" scoped>
 @import "../helper.scss";
 .topnav {
-  background: white;
+  background: #698ff5;
   display: flex;
   padding: 16px;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 1200px;
   z-index: 10;
   justify-content: center;
   align-items: center;

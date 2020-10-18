@@ -5,7 +5,7 @@
          v-for="(t,index) in titles" :key="index"
          :class="t === selected ? 'selected' : ''"
          @click="()=>{select(t)}"
-         :ref="(el)=>{if (el){navItemRef[index] = el}}"
+         :ref="(el)=>{if (t === selected){selectedItem = el}}"
     >
       {{ t }}
     </div>
@@ -18,52 +18,50 @@
 </template>
 
 <script lang="ts">
-import Tab from './Tab.vue'
-import {computed,ref,onMounted,onUpdated} from 'vue'
-  export default {
-    props: {
-      selected: String,
-    },
-    setup(props, context) {
-      const defaults = context.slots.default();
-      defaults.forEach((tag) => {
-        if (tag.type !== Tab) {
-          throw new Error('Tabs 的内部必须是 Tab');
-        }
-      });
-      const titles = defaults.map(item => {
-        return item.props.title;
-      });
-      const select = (title: string) => {
-        context.emit('update:selected',title)
-        return defaults.filter(item=> item.props.title === title)[0]
+import Tab from './Tab.vue';
+import {computed, ref, watchEffect, onUpdated, onMounted} from 'vue';
+
+export default {
+  props: {
+    selected: String,
+  },
+  setup(props, context) {
+    const defaults = context.slots.default();
+    defaults.forEach((tag) => {
+      if (tag.type !== Tab) {
+        throw new Error('Tabs 的内部必须是 Tab');
       }
-      const current = computed(()=>{
-        return select(props.selected)
+    });
+    const titles = defaults.map(item => {
+      return item.props.title;
+    });
+    const select = (title: string) => {
+      context.emit('update:selected', title);
+      return defaults.filter(item => item.props.title === title)[0];
+    };
+    const current = computed(() => {
+      return select(props.selected);
+    });
+    const indicator = ref(null);
+    const containerRef = ref(null);
+    const selectedItem = ref(null);
+    onMounted(()=>{
+      watchEffect(()=>{
+        let width = ref(0);
+        width.value = selectedItem.value.getBoundingClientRect().width;
+        indicator.value.style.width = `${width.value}px`; // 确定下划线的长度
+        const containerLeft = (containerRef.value as HTMLDivElement).getBoundingClientRect().left; //确定下划线的位置
+        const beSelectedNavLeft = selectedItem.value.getBoundingClientRect().left;
+        const indicatorLeft: number = beSelectedNavLeft - containerLeft;
+        indicator.value.style.left = `${indicatorLeft}px`;
+      },{
+        flush: 'post'
       })
-      const navItemRef = ref([])
-      const indicator = ref(null)
-      const containerRef = ref(null)
-      const x = ()=>{ // 挂载的时候确定下划线的长度
-        let width = ref(0)
-        navItemRef.value.map((item: HTMLDivElement)=>{
-          if (item.classList.value.indexOf('selected') >= 0){
-            width.value = item.getBoundingClientRect().width;
-            indicator.value.style.width = width + 'px'
-            indicator.value.style.width = `${width.value}px`;
-            const containerLeft = (containerRef.value as HTMLDivElement).getBoundingClientRect().left
-            const beSelectedNavLeft = item.getBoundingClientRect().left
-            const indicatorLeft: number =  beSelectedNavLeft - containerLeft
-            indicator.value.style.left = `${indicatorLeft}px`
-            console.log(indicator.value.style.left);
-          }
-        })
-      }
-      onMounted(x)
-      onUpdated(x)
-      return {defaults, titles,select,current,navItemRef,indicator,containerRef};
-    }
+    })
+
+    return {defaults, titles, select, current, indicator, containerRef, selectedItem};
   }
+};
 </script>
 
 <style lang="scss">

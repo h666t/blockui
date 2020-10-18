@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Topnav class="nav"/>
+    <Topnav toggle-visible="toggle-visible" class="nav"/>
     <div class="content">
       <aside v-if="menuVisible">
         <h2>组件列表</h2>
@@ -28,12 +28,13 @@
 
 <script lang="ts">
 import Topnav from '../components/Topnav.vue';
-import {inject} from 'vue'
+import {inject,ref} from 'vue'
 export default {
   components: {Topnav},
   setup(){
+    const toggleVisible = ref(true)
     const menuVisible = inject('menuVisible')
-    return {menuVisible}
+    return {menuVisible,toggleVisible}
   }
 };
 </script>
