@@ -36,7 +36,7 @@ export default {
     }
   },
   setup() {
-    const codeString = ref('import { XXX } from \'../../../../lib/index.ts\';\n// 需改为\nimport { xxx } from \'block-ui-1\';');
+    const codeString = ref('import { XXX } from \'../../../../lib/index.ts\';\n// 需改为\nimport { XXX } from \'block-ui-1\';');
     return {codeString};
   }
 };

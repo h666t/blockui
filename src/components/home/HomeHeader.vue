@@ -14,7 +14,7 @@
         </span>
         <span class="actions">
             <router-link to="/doc">开始</router-link>
-            <a class="github" href="https://github.com">
+            <a class="github" href="https://github.com/h666t/blockui">
               <svg>
                 <use xlink:href="#icon-github"></use>
               </svg>
