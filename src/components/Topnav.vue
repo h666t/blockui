@@ -67,7 +67,7 @@ export default {
   > .toggleAside {
     width: 24px;
     height: 24px;
-    background: url('../assets/menu.png') ;
+    background-image: url('../assets/menu.png') ;
     background-position-x: center;
     background-position-y: center;
     background-size: 24px;
