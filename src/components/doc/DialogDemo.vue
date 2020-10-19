@@ -21,7 +21,6 @@ export default {
     Dialog
   },
   setup(){
-
     return {DialogDemoSlot,DialogDemoFn}
   },
 }

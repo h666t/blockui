@@ -23,9 +23,9 @@ import {Button,Dialog} from '../../../../lib/index.ts';
 export default {
   components:{ Button,Dialog },
   setup(){
-    const visible = ref(false) // 对话框是否可见
-    const closeOnClickOverlay = ref(true) // 点击对话框外时，对话框是否会关闭
-    const toggle = () => { //控制对话框是否可见
+    const visible = ref(false)
+    const closeOnClickOverlay = ref(true)
+    const toggle = () => {
       visible.value = !visible.value
     }
     const confirmFn = () => {
