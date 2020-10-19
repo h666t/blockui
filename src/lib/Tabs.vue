@@ -17,7 +17,6 @@
   <div class="block-tabs-content">
     <component :is="current" :key="selected" class="block-tabs-content-item"/>
   </div>
-
 </div>
 </template>
 

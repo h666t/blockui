@@ -15,7 +15,7 @@ export default {
     format: 'umd',
     plugins: [terser()]
   }, {
-    name: 'Gulu',
+    name: 'blockui',
     file: 'dist/lib/blockui.esm.js',
     format: 'es',
     plugins: [terser()]
