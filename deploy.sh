@@ -4,6 +4,6 @@ cd dist &&
 git init &&
 git add . &&
 git commit -m 'deploy' &&
-git remote add origin git@gitee.com:huang-haotian/block-ui.git &&
+git remote add origin git@gitee.com:huang-haotian/block-uiwebsite.git &&
 git push -u origin master -f
 cd -
