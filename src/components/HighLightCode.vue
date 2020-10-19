@@ -1,5 +1,5 @@
 <template>
-  <pre :class=`language-${codeType}` v-html="code"/>
+  <pre :class="`language-${codeType}`" v-html="code"/>
 </template>
 
 <script lang="ts">
