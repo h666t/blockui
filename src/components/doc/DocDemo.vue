@@ -9,7 +9,7 @@
     <h3>注意</h3>
     <article>
       以下代码中的 组件/函数 需要统一从 block-ui-1 中导入
-      <pre v-html="code" class="language-javascript"/>
+      <HighLightCode :code-string="codeString" code-type="javascript"/>
     </article>
     <br>
     <h3>代码演示</h3>
@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import 'prismjs';
-import 'prismjs/themes/prism-okaidia.css';
 import {ref} from 'vue';
+import HighLightCode from '../HighLightCode.vue';
 
 export default {
+  components: {HighLightCode},
   props: {
     title: {
       type: String,
@@ -36,11 +36,8 @@ export default {
     }
   },
   setup() {
-    const Prism = (window as any).Prism;
     const codeString = ref('import { XXX } from \'../../../../lib/index.ts\';\n// 需改为\nimport { xxx } from \'block-ui-1\';');
-    const code = Prism.highlight(codeString.value, Prism.languages.javascript, 'javascript');
-    return {code};
-
+    return {codeString};
   }
 };
 </script>
