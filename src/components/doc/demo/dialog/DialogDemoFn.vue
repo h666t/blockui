@@ -20,7 +20,6 @@ export default {
         closeOnClickOverlay:true,
         confirmFn:()=>{return true}})
     }
-
     return {showDialog}
   }
 }

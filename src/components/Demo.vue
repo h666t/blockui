@@ -6,16 +6,15 @@
         <component :is="component"/>
       </div>
       <Button level="main" size="normal" @click="toggle">{{buttonText}}</Button>
-        <pre v-if="codeVisible" class="language-html" v-html="code"/>
+      <HighLightCode v-if="codeVisible" :codeString="component.__sourceCode" codeType="html"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Button from '../lib/Button.vue';
-import 'prismjs';
-import 'prismjs/themes/prism-okaidia.css'
 import {ref,computed} from 'vue'
+import HighLightCode from './HighLightCode.vue';
 export default {
   props:{
     component: {
@@ -24,21 +23,18 @@ export default {
     },
   },
   components:{
-    Button
+    HighLightCode,
+    Button,
   },
-  setup(props){
-    const Prism = (window as any).Prism
+  setup(){
     const codeVisible = ref(false)
     const toggle = () => {
       codeVisible.value = !codeVisible.value
     }
-    const code = computed(()=>{
-      return  Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html')
-    })
     const buttonText = computed(()=>{
       if (codeVisible.value){return '隐藏代码'}else {return '显示代码'}
     })
-    return {Prism,codeVisible,toggle,code,buttonText}
+    return {codeVisible,toggle,buttonText}
   }
 }
 </script>
