@@ -5,7 +5,9 @@
       <div class="demo">
         <component :is="component"/>
       </div>
-      <Button level="main" size="normal" @click="toggle">{{buttonText}}</Button>
+      <div>
+        <Button level="main" size="normal" @click="toggle">{{buttonText}}</Button>
+      </div>
       <HighLightCode v-if="codeVisible" :codeString="component.__sourceCode" codeType="html"/>
     </div>
   </div>
