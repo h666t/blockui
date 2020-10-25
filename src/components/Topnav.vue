@@ -4,10 +4,6 @@
       <router-link to="/" class="logo">
         Block UI
       </router-link>
-      <ul class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
-      </ul>
       <span v-if="toggleVisible" class="toggleAside" @click="toggleMenu"></span>
     </div>
   </div>
@@ -52,7 +48,7 @@ export default {
     max-width: 6em;
     margin-right: auto;
     font-family: $logoFontFamily;
-    color: #273849;
+    color: white;
     font-weight: 500;
   }
 
