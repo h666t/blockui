@@ -52,6 +52,7 @@ main{
   @media (min-width: 1200px) {
     grid-template-rows: 1fr ;
     grid-template-columns: 1fr 1fr 1fr ;
+    padding-top: 10vh;
   }
   align-items: center;
   text-align: center;

@@ -41,7 +41,9 @@ export default {
   color: white;
   padding: 30px 0;
   background: linear-gradient(142deg, rgba(105,143,245,1) 0%, rgba(129,71,181,1) 100%);
-
+  @media (min-width: 1200px) {
+    padding: 100px;
+  }
   > header {
     display: grid;
     width: 100%;
